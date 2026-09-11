@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-50: #edfbf3;
+  --color-brand-100: #d3f4e1;
+  --color-brand-200: #a9e8c6;
+  --color-brand-300: #71d5a4;
+  --color-brand-400: #3bbb80;
+  --color-brand-500: #1a9e66;
+  --color-brand-600: #0f7e52;
+  --color-brand-700: #0d6444;
+  --color-brand-800: #0d5038;
+  --color-brand-900: #0b4230;
+}
+
+:root {
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --surface-2: #f1f4f2;
+  --border: #e2e7e4;
+  --text: #141a16;
+  --muted: #5c6a62;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b100d;
+    --surface: #141a16;
+    --surface-2: #1b2320;
+    --border: #262e29;
+    --text: #e9ece9;
+    --muted: #98a69e;
+    color-scheme: dark;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.75rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition:
+      background-color 0.15s,
+      border-color 0.15s,
+      color 0.15s;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--color-brand-600);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: var(--color-brand-700);
+  }
+  .btn-primary:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  .btn-ghost {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-brand-400);
+    color: var(--color-brand-600);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border-radius: 999px;
+    padding: 0.15rem 0.55rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .field {
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 0.7rem 0.9rem;
+    font-size: 0.95rem;
+    color: var(--text);
+    outline: none;
+  }
+  .field::placeholder {
+    color: var(--muted);
+  }
+  .field:focus {
+    border-color: var(--color-brand-500);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-brand-500) 20%, transparent);
+  }
+}
+
+.muted {
+  color: var(--muted);
+}
+.bg-surface {
+  background: var(--surface);
+}
+.bg-surface-2 {
+  background: var(--surface-2);
+}
+.border-line {
+  border-color: var(--border);
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .card {
+    border-color: #cfd8d3;
+    break-inside: avoid;
+  }
+  @page {
+    margin: 10mm;
+    size: A4 landscape;
+  }
+}
